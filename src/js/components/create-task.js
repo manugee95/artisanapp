@@ -1,6 +1,11 @@
 init(() => {
-	Alpine.data("create-task", () => ({
-		profile_photo: null,
-		header_photo: null,
+	Alpine.data("createTask", () => ({
+		currentStep: 1,
+		nextStep() {
+			this.currentStep++;
+		},
+		prevStep() {
+			this.currentStep--;
+		},
 	}));
 });
