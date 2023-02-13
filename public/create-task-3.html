@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, user-scalable=0,maximum-scale=1.0"
+		/>
+		<link rel="stylesheet" href="./styles.css" />
+		<title>Document</title>
+	</head>
+	<body class="font-custom">
+		<header
+			class="fixed top-0 w-full z-[3] h-[8rem] bg-primary flex items-center justify-between px-8 md:px-[3rem]"
+		>
+			<span class="font-extrabold text-white text-[2rem] md:text-[2.5rem]"
+				>ArtisanConnect</span
+			>
+			<ul class="hidden md:flex items-center gap-x-[3.2rem] text-[1.7rem]">
+				<li class="font-medium text-white"><a href="#">Services</a></li>
+				<li class="font-medium text-white"><a href="#">Log in</a></li>
+				<li class="font-medium text-white"><a href="#">Sign up</a></li>
+				<li class="font-medium">
+					<a
+						href="#"
+						class="bg-secondary rounded-lg font-medium text-white px-9 py-5 transition-all duration-200 hover:bg-white hover:text-secondary"
+						>Become a pro</a
+					>
+				</li>
+			</ul>
+			<span
+				class="flex items-center justify-center w-[35px] h-[35px] md:hidden"
+			>
+				<svg
+					width="22"
+					height="14"
+					viewBox="0 0 22 14"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M0 0H22V2.33333H0V0ZM0 5.83333H22V8.16667H0V5.83333ZM0 11.6667H22V14H0V11.6667Z"
+						fill="white"
+					/>
+				</svg>
+			</span>
+		</header>
+		<main class="pt-[8rem] flex">
+			<aside
+				class="md:w-[35%] lg:w-[25%] md:h-screen h-[70px] w-full fixed bottom-0 z-[2] md:static bg-white md:bg-transparent"
+			>
+				<div
+					class="flex justify-center md:justify-start h-full w-full border-t-[1.5px] md:border-t-0 border-t-[#FFD1BC] md:border-r md:border-r-[#FFD1BC] px-6 md:py-12"
+				>
+					<ul
+						class="w-full flex items-center justify-between md:justify-start md:items-start md:flex-col gap-y-5"
+					>
+						<li
+							class="text-[1.7rem] cursor-pointer transition-all duration-200 hover:bg-[#eaeaea] px-5 rounded-lg py-5 font-bold text-secondary flex items-center gap-x-5"
+						>
+							<span
+								class="flex items-center justify-center w-[35px] h-[35px] rounded-full bg-primary text-[1.7rem] text-white"
+								>1</span
+							>
+							<span class="hidden md:flex">Describe Task</span>
+						</li>
+						<li
+							class="text-[1.7rem] cursor-pointer transition-all duration-200 hover:bg-[#eaeaea] px-5 rounded-lg py-5 font-medium text-customBlack flex items-center gap-x-5"
+						>
+							<span
+								class="flex items-center justify-center w-[35px] h-[35px] rounded-full bg-[#F24C004D] text-[1.7rem] text-white"
+								>2</span
+							>
+							<span class="hidden md:flex">Location</span>
+						</li>
+						<li
+							class="text-[1.7rem] cursor-pointer transition-all duration-200 hover:bg-[#eaeaea] px-5 rounded-lg py-5 font-medium text-customBlack flex items-center gap-x-5"
+						>
+							<span
+								class="flex items-center justify-center w-[35px] h-[35px] rounded-full bg-[#F24C004D] text-[1.7rem] text-white"
+								>3</span
+							>
+							<span class="hidden md:flex">Details</span>
+						</li>
+						<li
+							class="text-[1.7rem] cursor-pointer transition-all duration-200 hover:bg-[#eaeaea] px-5 rounded-lg py-5 font-medium text-customBlack flex items-center gap-x-5"
+						>
+							<span
+								class="flex items-center justify-center w-[35px] h-[35px] rounded-full bg-[#F24C004D] text-[1.7rem] text-white"
+								>4</span
+							>
+							<span class="hidden md:flex">Budget</span>
+						</li>
+					</ul>
+				</div>
+			</aside>
+			<section class="w-full md:w-[65%] lg:w-[75%]">
+				<div class="w-full pb-48 md:pb-12 py-12 px-10">
+					<div class="flex flex-col items-center gap-y-12">
+						<div class="w-full flex flex-col items-center gap-y-7">
+							<span
+								class="text-center font-semibold text-[1.8rem] text-customBlack"
+								>Provide more details</span
+							>
+							<textarea
+								class="resize-none outline-none w-full lg:w-[60%] border-[1.5px] h-[210px] border-[#D9D7D7] rounded-lg p-5 transition-all duration-200 hover:border-secondary focus-within:border-secondary text-2xl"
+								placeholder="Write a summary of the key details"
+							></textarea>
+							<div class="w-full lg:w-[60%]">
+								<label
+									for="add-task-photo"
+									class="flex items-center gap-x-5 cursor-pointer"
+								>
+									<svg
+										width="28"
+										height="28"
+										viewBox="0 0 28 28"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<g clip-path="url(#clip0_177_484)">
+											<path
+												d="M14 28C21.7328 28 28 21.7328 28 14C28 6.26719 21.7328 0 14 0C6.26719 0 0 6.26719 0 14C0 21.7328 6.26719 28 14 28ZM12.6875 18.8125V15.3125H9.1875C8.46016 15.3125 7.875 14.7273 7.875 14C7.875 13.2727 8.46016 12.6875 9.1875 12.6875H12.6875V9.1875C12.6875 8.46016 13.2727 7.875 14 7.875C14.7273 7.875 15.3125 8.46016 15.3125 9.1875V12.6875H18.8125C19.5398 12.6875 20.125 13.2727 20.125 14C20.125 14.7273 19.5398 15.3125 18.8125 15.3125H15.3125V18.8125C15.3125 19.5398 14.7273 20.125 14 20.125C13.2727 20.125 12.6875 19.5398 12.6875 18.8125Z"
+												fill="black"
+											/>
+										</g>
+										<defs>
+											<clipPath id="clip0_177_484">
+												<rect width="28" height="28" fill="white" />
+											</clipPath>
+										</defs>
+									</svg>
+									<span
+										class="text-center font-medium text-[1.8rem] text-customBlack"
+										>Add Photo</span
+									>
+									<input type="file" class="hidden" id="add-task-photo" />
+								</label>
+							</div>
+						</div>
+						<a
+							href="#"
+							class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
+							>Next</a
+						>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

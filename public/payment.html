@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, user-scalable=0,maximum-scale=1.0"
+		/>
+		<link rel="stylesheet" href="./styles.css" />
+		<title>Document</title>
+	</head>
+	<body class="font-custom">
+		<header
+			class="fixed top-0 w-full z-[3] h-[8rem] bg-primary flex items-center justify-between px-8 md:px-[3rem]"
+		>
+			<span class="font-extrabold text-white text-[2rem] md:text-[2.5rem]"
+				>ArtisanConnect</span
+			>
+			<ul class="hidden md:flex items-center gap-x-[3.2rem] text-[1.7rem]">
+				<li class="font-medium text-white"><a href="#">Services</a></li>
+				<li class="font-medium text-white"><a href="#">Log in</a></li>
+				<li class="font-medium text-white"><a href="#">Sign up</a></li>
+				<li class="font-medium">
+					<a
+						href="#"
+						class="bg-secondary rounded-lg font-medium text-white px-9 py-5 transition-all duration-200 hover:bg-white hover:text-secondary"
+						>Become a pro</a
+					>
+				</li>
+			</ul>
+			<span
+				class="flex items-center justify-center w-[35px] h-[35px] md:hidden"
+			>
+				<svg
+					width="22"
+					height="14"
+					viewBox="0 0 22 14"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M0 0H22V2.33333H0V0ZM0 5.83333H22V8.16667H0V5.83333ZM0 11.6667H22V14H0V11.6667Z"
+						fill="white"
+					/>
+				</svg>
+			</span>
+		</header>
+		<main class="pt-[8rem] flex">
+			<aside
+				class="md:w-[35%] lg:w-[25%] md:h-screen h-[70px] w-full fixed bottom-0 z-[2] md:static bg-white md:bg-transparent"
+			>
+				<div
+					class="flex justify-center md:justify-start h-full w-full border-t-[1.5px] md:border-t-0 border-t-[#FFD1BC] md:border-r md:border-r-[#FFD1BC] px-6 md:py-12"
+				>
+					<ul
+						class="w-full flex items-center justify-between md:justify-start md:items-start md:flex-col gap-y-5"
+					>
+						<li
+							class="text-[1.7rem] cursor-pointer transition-all duration-200 hover:bg-[#eaeaea] px-5 rounded-lg py-5 font-bold text-secondary flex items-center gap-x-5"
+						>
+							<svg
+								width="20"
+								height="22"
+								viewBox="0 0 20 22"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<g clip-path="url(#clip0_150_79)">
+									<path
+										d="M9.625 11C12.6629 11 15.125 8.53789 15.125 5.5C15.125 2.46211 12.6629 0 9.625 0C6.58711 0 4.125 2.46211 4.125 5.5C4.125 8.53789 6.58711 11 9.625 11ZM7.66133 13.0625C3.42891 13.0625 0 16.4914 0 20.7238C0 21.4285 0.571484 22 1.27617 22H17.9738C18.6785 22 19.25 21.4285 19.25 20.7238C19.25 16.4914 15.8211 13.0625 11.5887 13.0625H7.66133Z"
+										fill="#485696"
+									/>
+								</g>
+								<defs>
+									<clipPath id="clip0_150_79">
+										<rect width="19.25" height="22" fill="white" />
+									</clipPath>
+								</defs>
+							</svg>
+							<span class="hidden md:flex">Profile</span>
+						</li>
+						<li
+							class="text-[1.7rem] cursor-pointer transition-all duration-200 hover:bg-[#eaeaea] px-5 rounded-lg py-5 font-medium text-customBlack flex items-center gap-x-5"
+						>
+							<svg
+								width="25"
+								height="23"
+								viewBox="0 0 25 23"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M7.99045 1.65804C8.42014 2.04432 8.45486 2.6997 8.06858 3.12939L4.94358 6.60161C4.7526 6.81429 4.48351 6.94016 4.19705 6.9445C3.91059 6.94884 3.63715 6.84033 3.43316 6.64068L1.69271 4.90457C1.28472 4.49658 1.28472 3.83686 1.69271 3.43321C2.10069 3.02957 2.76042 3.02522 3.16406 3.43321L4.12326 4.39241L6.51476 1.73616C6.90104 1.30648 7.55642 1.27175 7.98611 1.65804H7.99045ZM7.99045 8.60248C8.42014 8.98877 8.45486 9.64415 8.06858 10.0738L4.94358 13.5461C4.7526 13.7587 4.48351 13.8846 4.19705 13.8889C3.91059 13.8933 3.63715 13.7848 3.43316 13.5851L1.69271 11.849C1.28472 11.441 1.28472 10.7813 1.69271 10.3777C2.10069 9.97401 2.76042 9.96967 3.16406 10.3777L4.12326 11.3369L6.51476 8.68061C6.90104 8.25092 7.55642 8.2162 7.98611 8.60248H7.99045ZM11.1111 4.16672C11.1111 3.39849 11.7318 2.77783 12.5 2.77783H22.2222C22.9905 2.77783 23.6111 3.39849 23.6111 4.16672C23.6111 4.93495 22.9905 5.55561 22.2222 5.55561H12.5C11.7318 5.55561 11.1111 4.93495 11.1111 4.16672ZM11.1111 11.1112C11.1111 10.3429 11.7318 9.72227 12.5 9.72227H22.2222C22.9905 9.72227 23.6111 10.3429 23.6111 11.1112C23.6111 11.8794 22.9905 12.5001 22.2222 12.5001H12.5C11.7318 12.5001 11.1111 11.8794 11.1111 11.1112ZM8.33333 18.0556C8.33333 17.2874 8.95399 16.6667 9.72222 16.6667H22.2222C22.9905 16.6667 23.6111 17.2874 23.6111 18.0556C23.6111 18.8238 22.9905 19.4445 22.2222 19.4445H9.72222C8.95399 19.4445 8.33333 18.8238 8.33333 18.0556ZM3.47222 20.1389C2.32205 20.1389 1.38889 19.2058 1.38889 18.0556C1.38889 16.9054 2.32205 15.9723 3.47222 15.9723C4.6224 15.9723 5.55556 16.9054 5.55556 18.0556C5.55556 19.2058 4.6224 20.1389 3.47222 20.1389Z"
+									fill="#2A2A2A"
+								/>
+							</svg>
+							<span class="hidden md:flex">My Tasks</span>
+						</li>
+						<li
+							class="text-[1.7rem] cursor-pointer transition-all duration-200 hover:bg-[#eaeaea] px-5 rounded-lg py-5 font-medium text-customBlack flex items-center gap-x-5"
+						>
+							<svg
+								width="25"
+								height="20"
+								viewBox="0 0 25 20"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M2.75 0C1.2332 0 0 1.2332 0 2.75V4.125H24.75V2.75C24.75 1.2332 23.5168 0 22 0H2.75ZM24.75 8.25H0V16.5C0 18.0168 1.2332 19.25 2.75 19.25H22C23.5168 19.25 24.75 18.0168 24.75 16.5V8.25ZM4.8125 13.75H7.5625C7.94063 13.75 8.25 14.0594 8.25 14.4375C8.25 14.8156 7.94063 15.125 7.5625 15.125H4.8125C4.43437 15.125 4.125 14.8156 4.125 14.4375C4.125 14.0594 4.43437 13.75 4.8125 13.75ZM9.625 14.4375C9.625 14.0594 9.93437 13.75 10.3125 13.75H15.8125C16.1906 13.75 16.5 14.0594 16.5 14.4375C16.5 14.8156 16.1906 15.125 15.8125 15.125H10.3125C9.93437 15.125 9.625 14.8156 9.625 14.4375Z"
+									fill="#2A2A2A"
+								/>
+							</svg>
+							<span class="hidden md:flex">Payment Method</span>
+						</li>
+						<li
+							class="text-[1.7rem] cursor-pointer transition-all duration-200 hover:bg-[#eaeaea] px-5 rounded-lg py-5 font-medium text-customBlack flex items-center gap-x-5"
+						>
+							<svg
+								width="25"
+								height="22"
+								viewBox="0 0 25 22"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M21.3081 7.15859C21.4456 7.53242 21.3296 7.94922 21.0331 8.21562L19.1725 9.90859C19.2198 10.2652 19.2456 10.6305 19.2456 11C19.2456 11.3695 19.2198 11.7348 19.1725 12.0914L21.0331 13.7844C21.3296 14.0508 21.4456 14.4676 21.3081 14.8414C21.119 15.3527 20.8913 15.8426 20.6292 16.3152L20.4272 16.6633C20.1436 17.1359 19.8256 17.5828 19.4776 18.0039C19.2241 18.3133 18.803 18.4164 18.4249 18.2961L16.0315 17.5355C15.4557 17.9781 14.8198 18.3477 14.1409 18.627L13.6038 21.0805C13.5178 21.4715 13.2171 21.7809 12.8217 21.8453C12.2288 21.9441 11.6186 21.9957 10.9956 21.9957C10.3725 21.9957 9.76236 21.9441 9.1694 21.8453C8.77408 21.7809 8.4733 21.4715 8.38736 21.0805L7.85026 18.627C7.17135 18.3477 6.53541 17.9781 5.95963 17.5355L3.57057 18.3004C3.19244 18.4207 2.77135 18.3133 2.51783 18.0082C2.16979 17.5871 1.85182 17.1402 1.56822 16.6676L1.36627 16.3195C1.10416 15.8469 0.876427 15.357 0.687365 14.8457C0.549865 14.4719 0.66588 14.0551 0.962365 13.7887L2.82291 12.0957C2.77565 11.7348 2.74986 11.3695 2.74986 11C2.74986 10.6305 2.77565 10.2652 2.82291 9.90859L0.962365 8.21562C0.66588 7.94922 0.549865 7.53242 0.687365 7.15859C0.876427 6.64727 1.10416 6.15742 1.36627 5.68477L1.56822 5.33672C1.85182 4.86406 2.16979 4.41719 2.51783 3.99609C2.77135 3.68672 3.19244 3.58359 3.57057 3.70391L5.96393 4.46445C6.53971 4.02187 7.17565 3.65234 7.85455 3.37305L8.39166 0.919531C8.4776 0.528516 8.77838 0.219141 9.17369 0.154687C9.76666 0.0515625 10.3768 0 10.9999 0C11.6229 0 12.2331 0.0515625 12.826 0.150391C13.2214 0.214844 13.5221 0.524219 13.6081 0.915234L14.1452 3.36875C14.8241 3.64805 15.46 4.01758 16.0358 4.46016L18.4292 3.69961C18.8073 3.5793 19.2284 3.68672 19.4819 3.9918C19.8299 4.41289 20.1479 4.85977 20.4315 5.33242L20.6335 5.68047C20.8956 6.15312 21.1233 6.64297 21.3124 7.1543L21.3081 7.15859ZM10.9999 14.4375C12.8991 14.4375 14.4374 12.8992 14.4374 11C14.4374 9.10078 12.8991 7.5625 10.9999 7.5625C9.10065 7.5625 7.56237 9.10078 7.56237 11C7.56237 12.8992 9.10065 14.4375 10.9999 14.4375Z"
+									fill="#2A2A2A"
+								/>
+							</svg>
+							<span class="hidden md:flex">Settings</span>
+						</li>
+					</ul>
+				</div>
+			</aside>
+			<section class="w-full md:w-[65%] lg:w-[75%]">
+				<div class="w-full pb-48 md:pb-12 py-12 px-10">
+					<p
+						class="font-semibold text-customBlack text-[2rem] md:text-[3.5rem]"
+					>
+						Payment Details
+					</p>
+					<div class="flex items-center">
+						<div class="w-full lg:w-1/2">
+							<div class="mt-12 flex flex-col gap-y-5">
+								<span class="text-2xl font-medium text-customBlack"
+									>Cardholder's Name</span
+								>
+								<input
+									type="text"
+									x-model="username"
+									class="w-full outline-none border-[1.5px] text-2xl font-medium border-[#D9D7D7] h-[4.6rem] rounded-lg px-5 transition-all duration-200 hover:border-secondary focus:border-secondary"
+									placeholder="Cardholder's Name"
+								/>
+							</div>
+							<div class="mt-12 flex flex-col gap-y-5">
+								<span class="text-2xl font-medium text-customBlack"
+									>Card Number</span
+								>
+								<input
+									type="text"
+									x-model="username"
+									class="w-full outline-none border-[1.5px] text-2xl font-medium border-[#D9D7D7] h-[4.6rem] rounded-lg px-5 transition-all duration-200 hover:border-secondary focus:border-secondary"
+									placeholder="Card Number"
+								/>
+							</div>
+							<div class="flex justify-between">
+								<div class="mt-12 flex flex-col gap-y-5 w-[48%]">
+									<span class="text-2xl font-medium text-customBlack"
+										>MM/YY</span
+									>
+									<input
+										type="text"
+										x-model="username"
+										class="w-full outline-none border-[1.5px] text-2xl font-medium border-[#D9D7D7] h-[4.6rem] rounded-lg px-5 transition-all duration-200 hover:border-secondary focus:border-secondary"
+										placeholder="MM/YY"
+									/>
+								</div>
+								<div class="mt-12 flex flex-col gap-y-5 w-[48%]">
+									<span class="text-2xl font-medium text-customBlack">CVV</span>
+									<input
+										type="text"
+										x-model="username"
+										class="w-full outline-none border-[1.5px] text-2xl font-medium border-[#D9D7D7] h-[4.6rem] rounded-lg px-5 transition-all duration-200 hover:border-secondary focus:border-secondary"
+										placeholder="CVV"
+									/>
+								</div>
+							</div>
+							<div class="mt-10">
+								<button
+									class="px-12 md:px-14 lg:px-14 py-5 bg-primary text-2xl lg:text-2xl xl:text-2xl text-white font-medium w-full rounded-lg transition-all duration-200 hover:bg-secondary flex items-center justify-center"
+								>
+									Save
+								</button>
+							</div>
+						</div>
+						<div class="w-1/2 hidden lg:flex items-center justify-center">
+							<img src="images/payment.png" alt="" />
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

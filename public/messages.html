@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, user-scalable=0,maximum-scale=1.0"
+		/>
+		<link rel="stylesheet" href="./styles.css" />
+		<title>Document</title>
+	</head>
+	<body class="font-custom">
+		<header
+			class="fixed top-0 w-full z-[3] h-[8rem] bg-primary flex items-center justify-between px-8 md:px-[3rem]"
+		>
+			<span class="font-extrabold text-white text-[2rem] md:text-[2.5rem]"
+				>ArtisanConnect</span
+			>
+			<ul class="hidden md:flex items-center gap-x-[3.2rem] text-[1.7rem]">
+				<li class="font-medium text-white"><a href="#">Services</a></li>
+				<li class="font-medium text-white"><a href="#">Log in</a></li>
+				<li class="font-medium text-white"><a href="#">Sign up</a></li>
+				<li class="font-medium">
+					<a
+						href="#"
+						class="bg-secondary rounded-lg font-medium text-white px-9 py-5 transition-all duration-200 hover:bg-white hover:text-secondary"
+						>Become a pro</a
+					>
+				</li>
+			</ul>
+			<span
+				class="flex items-center justify-center w-[35px] h-[35px] md:hidden"
+			>
+				<svg
+					width="22"
+					height="14"
+					viewBox="0 0 22 14"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M0 0H22V2.33333H0V0ZM0 5.83333H22V8.16667H0V5.83333ZM0 11.6667H22V14H0V11.6667Z"
+						fill="white"
+					/>
+				</svg>
+			</span>
+		</header>
+		<main class="pt-[8rem] flex">
+			<section class="w-full">
+				<div class="w-full pb-48 md:pb-12 py-12 px-10">
+					<p
+						class="mb-14 font-semibold text-customBlack text-[2rem] md:text-[3.5rem]"
+					>
+						Messages
+					</p>
+					<div class="w-full flex items-center flex-col gap-y-7">
+						<img src="images/no-messages.png" alt="" />
+						<span
+							class="lg:px-36 xl:px-48 text-[1.5rem] text-center md:text-[1.8rem] text-[#727070]"
+							>Sorry, you do not have any messages at the moment</span
+						>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>
