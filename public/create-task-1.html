@@ -16,6 +16,11 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.css"
 		/>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.js"
+			defer
+		></script>
 		<script defer src="../src/js/config.js"></script>
 		<script defer src="../src/js/components/menu-dropdown.js"></script>
 		<script defer src="../src/js/components/create-task.js"></script>
@@ -111,6 +116,14 @@
 				</div>
 			</aside>
 			<section class="w-full md:w-[65%] lg:w-[75%]">
+				<form class="hidden" id="taskForm" action="/gghgh">
+					<input type="hidden" v-model="taskInfo.title" />
+					<input type="hidden" v-model="taskInfo.taskDate" />
+					<input type="hidden" v-model="taskInfo.address" />
+					<input type="hidden" v-model="taskInfo.summary" />
+					<input type="hidden" v-model="taskInfo.budget" />
+					<input type="file" class="hidden" id="add-task-photo" />
+				</form>
 				<div
 					x-show="currentStep === 1"
 					class="w-full pb-48 md:pb-12 py-12 px-10"
@@ -134,43 +147,34 @@
 								class="w-[90%] lg:w-[45%] border-[1.5px] h-[80px] border-[#D9D7D7] rounded-lg flex items-center justify-center"
 							>
 								<div
+									x-init="initDatePicker($select('#taskDatePickr'), $select('body'))"
 									class="grow max-w-1/2 h-full border-r-[1.5px] border-r-[#D9D7D7]"
 								>
 									<input
-										class="text-[1.7rem] outline-none border-0 w-full h-full text-center"
+										id="taskDatePickr"
+										class="cursor-pointer text-[1.7rem] outline-none border-0 w-full h-full text-center"
 										type="text"
-										value="Mon,25,2023"
+										placeholder="Select Date and Time"
 									/>
-								</div>
-								<div
-									class="grow max-w-1/2 h-full flex items-center gap-x-4 pr-5"
-								>
-									<input
-										class="text-[1.7rem] outline-none border-0 w-full h-full text-center"
-										type="text"
-										value="1:00pm"
-									/>
-									<svg
-										width="20"
-										height="12"
-										viewBox="0 0 20 12"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-									>
-										<path
-											d="M8.99141 11.0086C9.54926 11.5664 10.4552 11.5664 11.0131 11.0086L19.5816 2.44003C20.1395 1.88218 20.1395 0.976236 19.5816 0.418387C19.0238 -0.139462 18.1178 -0.139462 17.56 0.418387L10 7.97836L2.44003 0.422849C1.88218 -0.135 0.976236 -0.135 0.418387 0.422849C-0.139462 0.980698 -0.139462 1.88664 0.418387 2.44449L8.98695 11.0131L8.99141 11.0086Z"
-											fill="#2A2A2A"
-										/>
-									</svg>
 								</div>
 							</div>
 						</div>
-						<button
-							@click="nextStep"
-							class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
-						>
-							Next
-						</button>
+						<div class="flex items-center gap-x-10">
+							<button
+								x-show="currentStep > 1"
+								@click="prevStep"
+								class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
+							>
+								Back
+							</button>
+							<button
+								x-show="currentStep < 4"
+								@click="nextStep"
+								class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
+							>
+								Next
+							</button>
+						</div>
 					</div>
 				</div>
 				<div
@@ -200,21 +204,30 @@
 										fill="#2A2A2A"
 									/>
 								</svg>
-
 								<input
 									type="text"
-									x-model="password"
+									x-model="taskInfo.address"
 									class="grow w-[90%] outline-none border-none"
 									placeholder="Your Address"
 								/>
 							</div>
 						</div>
-						<button
-							@click="nextStep"
-							class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
-						>
-							Next
-						</button>
+						<div class="flex items-center gap-x-10">
+							<button
+								x-show="currentStep > 1"
+								@click="prevStep"
+								class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
+							>
+								Back
+							</button>
+							<button
+								x-show="currentStep < 4"
+								@click="nextStep"
+								class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
+							>
+								Next
+							</button>
+						</div>
 					</div>
 				</div>
 				<div
@@ -259,16 +272,62 @@
 										class="text-center font-medium text-[1.8rem] text-customBlack"
 										>Add Photo</span
 									>
-									<input type="file" class="hidden" id="add-task-photo" />
 								</label>
 							</div>
 						</div>
-						<button
-							@click="nextStep"
-							class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
-						>
-							Next
-						</button>
+						<div class="flex items-center gap-x-10">
+							<button
+								x-show="currentStep > 1"
+								@click="prevStep"
+								class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
+							>
+								Back
+							</button>
+							<button
+								x-show="currentStep < 4"
+								@click="nextStep"
+								class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
+							>
+								Next
+							</button>
+						</div>
+					</div>
+				</div>
+				<div
+					x-show="currentStep === 4"
+					class="w-full pb-48 md:pb-12 py-12 px-10"
+				>
+					<div class="flex flex-col items-center gap-y-12">
+						<div class="w-full flex flex-col items-center gap-y-7">
+							<span
+								class="text-center font-semibold text-[1.8rem] text-customBlack"
+								>Budget</span
+							>
+							<div
+								class="w-[70%] flex items-center border-[1.5px] text-2xl gap-x-5 font-medium border-[#D9D7D7] h-[4.6rem] rounded-lg px-5 transition-all duration-200 hover:border-secondary focus-within:border-secondary"
+							>
+								<input
+									type="text"
+									x-model="taskInfo.budget"
+									class="grow w-[90%] outline-none border-none"
+									placeholder="Your Address"
+								/>
+							</div>
+						</div>
+						<div class="flex items-center gap-x-10">
+							<button
+								x-show="currentStep > 1"
+								@click="prevStep"
+								class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
+							>
+								Back
+							</button>
+							<button
+								@click="nextStep($select('#taskForm'))"
+								x-text="currentStep === 4 ? 'Submit' : 'Next'"
+								class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
+							></button>
+						</div>
 					</div>
 				</div>
 			</section>
