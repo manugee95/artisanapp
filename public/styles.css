@@ -577,6 +577,26 @@ video {
   right: 0px;
 }
 
+.left-0{
+  left: 0px;
+}
+
+.top-\[\]{
+  top: ;
+}
+
+.top-\[5\%\]{
+  top: 5%;
+}
+
+.top-\[10\%\]{
+  top: 10%;
+}
+
+.top-\[15\%\]{
+  top: 15%;
+}
+
 .z-\[3\]{
   z-index: 3;
 }
@@ -687,6 +707,14 @@ video {
 
 .h-\[104px\]{
   height: 104px;
+}
+
+.h-\[\]{
+  height: ;
+}
+
+.h-\[50px\]{
+  height: 50px;
 }
 
 .w-full{
