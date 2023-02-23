@@ -8,6 +8,13 @@
 			content="width=device-width, initial-scale=1.0, user-scalable=0,maximum-scale=1.0"
 		/>
 		<link rel="stylesheet" href="./styles.css" />
+		<script defer src="../src/js/config.js"></script>
+		<script defer src="../src/js/components/menu-dropdown.js"></script>
+		<script defer src="../src/js/components/create-task.js"></script>
+		<script
+			defer
+			src="https://unpkg.com/alpinejs@3.10.4/dist/cdn.min.js"
+		></script>
 		<title>Document</title>
 	</head>
 	<body class="font-custom">
@@ -134,24 +141,446 @@
 					</ul>
 				</div>
 			</aside>
-			<section class="w-full md:w-[65%] lg:w-[75%]">
+			<section x-data="tasks" class="w-full md:w-[65%] lg:w-[75%]">
 				<div class="w-full pb-48 md:pb-12 py-12 px-10">
 					<p
 						class="mb-14 font-semibold text-customBlack text-[2rem] md:text-[3.5rem]"
 					>
 						My Tasks
 					</p>
-					<div class="w-full flex items-center flex-col gap-y-7">
+					<!-- NO TASKS -->
+					<div class="hidden w-full flex items-center flex-col gap-y-7">
 						<img src="images/no-tasks.png" alt="" />
 						<span
 							class="text-[1.7rem] text-center md:text-[2.5rem] text-[#727070]"
 							>You do not have any task at the moment.</span
 						>
-						<a
-							href="#"
-							class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-12 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
-							>Book a task</a
+					</div>
+					<!-- TASKS -->
+					<div class="flex flex-col gap-y-14 items-center md:w-[70%]">
+						<div
+							class="overflow-hidden w-full flex items-center justify-between h-[50px] rounded-lg"
 						>
+							<button
+								@click="setTab('accepted')"
+								:class="isAccepted ? 'bg-primary text-white' :'bg-[#FAEDE7] text-customBlack'"
+								class="grow h-full text-2xl"
+							>
+								Accepted
+							</button>
+							<button
+								@click="setTab('declined')"
+								:class="isDeclined ? 'bg-primary text-white' :'bg-[#FAEDE7] text-customBlack'"
+								class="grow h-full text-2xl"
+							>
+								Declined
+							</button>
+							<button
+								@click="setTab('completed')"
+								:class="isCompleted ? 'bg-primary text-white' :'bg-[#FAEDE7] text-customBlack'"
+								class="grow h-full text-2xl"
+							>
+								Completed
+							</button>
+						</div>
+						<!-- ACCEPTED TASKS -->
+						<div x-show="isAccepted" class="w-full flex flex-col gap-y-8">
+							<div class="w-full pb-8 border-b last:border-0">
+								<div class="flex items-center justify-between">
+									<div class="flex items-center gap-x-5">
+										<img
+											src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+											alt=""
+											class="w-[70px] h-[70px] rounded-full object-cover"
+										/>
+										<div class="flex flex-col gap-y-3">
+											<span class="text-2xl font-semibold">John Adebayo</span>
+											<p class="flex items-center gap-x-3">
+												<svg
+													width="20"
+													height="19"
+													viewBox="0 0 20 19"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														fill-rule="evenodd"
+														clip-rule="evenodd"
+														d="M8.69555 0.80846C9.1439 -0.269486 10.6709 -0.269487 11.1193 0.80846L13.2013 5.81417L18.6054 6.24742C19.7691 6.34071 20.241 7.793 19.3543 8.55251L15.237 12.0795L16.4949 17.3529C16.7658 18.4885 15.5304 19.3861 14.5341 18.7775L9.90741 15.9516L5.28076 18.7775C4.28444 19.3861 3.04905 18.4885 3.31993 17.3529L4.57785 12.0795L0.460502 8.55251C-0.426138 7.79301 0.045735 6.34071 1.20947 6.24742L6.61356 5.81417L8.69555 0.80846Z"
+														fill="#F24C00"
+													/>
+												</svg>
+												<span class="text-3xl font-semibold text-customBlack"
+													>4.5</span
+												>
+											</p>
+										</div>
+									</div>
+									<a
+										href="tel:0955737233"
+										class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-primary"
+										><svg
+											width="17"
+											height="17"
+											viewBox="0 0 17 17"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												fill-rule="evenodd"
+												clip-rule="evenodd"
+												d="M0.380859 2.90486C0.380859 1.64249 1.40421 0.619141 2.66657 0.619141H3.71162C4.36715 0.619141 4.93855 1.06528 5.09754 1.70123L5.94005 5.07128C6.07946 5.62889 5.8711 6.21575 5.41128 6.56061L4.42566 7.29983C4.32331 7.37659 4.30106 7.48899 4.32981 7.56747C5.19496 9.92923 7.07078 11.805 9.43253 12.6702C9.51101 12.6989 9.62342 12.6767 9.70018 12.5743L10.4394 11.5887C10.7843 11.1289 11.3711 10.9205 11.9287 11.06L15.2988 11.9025C15.9347 12.0614 16.3809 12.6329 16.3809 13.2884V14.3334C16.3809 15.5958 15.3575 16.6191 14.0951 16.6191H12.3809C5.75344 16.6191 0.380859 11.2466 0.380859 4.61914V2.90486Z"
+												fill="white"
+											/>
+										</svg>
+									</a>
+								</div>
+								<div class="mt-8">
+									<span class="text-[1.7rem] font-semibold text-secondary"
+										>Task Description</span
+									>
+									<p class="mt-4 text-2xl text-customBlack">
+										Plumber with 10+ years experience. Skilled in all kinds of
+										plumbing and fittings tasks. Hire me today and get all your
+										plumbing issues solved.
+									</p>
+
+									<span
+										class="flex w-max text-white mt-8 bg-secondary px-10 py-4 rounded-full text-2xl"
+										>In Progress</span
+									>
+								</div>
+							</div>
+							<div class="w-full pb-8 border-b last:border-0">
+								<div class="flex items-center justify-between">
+									<div class="flex items-center gap-x-5">
+										<img
+											src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+											alt=""
+											class="w-[70px] h-[70px] rounded-full object-cover"
+										/>
+										<div class="flex flex-col gap-y-3">
+											<span class="text-2xl font-semibold">John Adebayo</span>
+											<p class="flex items-center gap-x-3">
+												<svg
+													width="20"
+													height="19"
+													viewBox="0 0 20 19"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														fill-rule="evenodd"
+														clip-rule="evenodd"
+														d="M8.69555 0.80846C9.1439 -0.269486 10.6709 -0.269487 11.1193 0.80846L13.2013 5.81417L18.6054 6.24742C19.7691 6.34071 20.241 7.793 19.3543 8.55251L15.237 12.0795L16.4949 17.3529C16.7658 18.4885 15.5304 19.3861 14.5341 18.7775L9.90741 15.9516L5.28076 18.7775C4.28444 19.3861 3.04905 18.4885 3.31993 17.3529L4.57785 12.0795L0.460502 8.55251C-0.426138 7.79301 0.045735 6.34071 1.20947 6.24742L6.61356 5.81417L8.69555 0.80846Z"
+														fill="#F24C00"
+													/>
+												</svg>
+												<span class="text-3xl font-semibold text-customBlack"
+													>4.5</span
+												>
+											</p>
+										</div>
+									</div>
+									<a
+										href="tel:0955737233"
+										class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-primary"
+										><svg
+											width="17"
+											height="17"
+											viewBox="0 0 17 17"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												fill-rule="evenodd"
+												clip-rule="evenodd"
+												d="M0.380859 2.90486C0.380859 1.64249 1.40421 0.619141 2.66657 0.619141H3.71162C4.36715 0.619141 4.93855 1.06528 5.09754 1.70123L5.94005 5.07128C6.07946 5.62889 5.8711 6.21575 5.41128 6.56061L4.42566 7.29983C4.32331 7.37659 4.30106 7.48899 4.32981 7.56747C5.19496 9.92923 7.07078 11.805 9.43253 12.6702C9.51101 12.6989 9.62342 12.6767 9.70018 12.5743L10.4394 11.5887C10.7843 11.1289 11.3711 10.9205 11.9287 11.06L15.2988 11.9025C15.9347 12.0614 16.3809 12.6329 16.3809 13.2884V14.3334C16.3809 15.5958 15.3575 16.6191 14.0951 16.6191H12.3809C5.75344 16.6191 0.380859 11.2466 0.380859 4.61914V2.90486Z"
+												fill="white"
+											/>
+										</svg>
+									</a>
+								</div>
+								<div class="mt-8">
+									<span class="text-[1.7rem] font-semibold text-secondary"
+										>Task Description</span
+									>
+									<p class="mt-4 text-2xl text-customBlack">
+										Plumber with 10+ years experience. Skilled in all kinds of
+										plumbing and fittings tasks. Hire me today and get all your
+										plumbing issues solved.
+									</p>
+
+									<span
+										class="flex w-max text-white mt-8 bg-secondary px-10 py-4 rounded-full text-2xl"
+										>In Progress</span
+									>
+								</div>
+							</div>
+						</div>
+						<!-- DECLINED TASKS -->
+						<div x-show="isDeclined" class="w-full flex flex-col gap-y-8">
+							<div class="w-full pb-8 border-b last:border-0">
+								<div class="flex items-center justify-between">
+									<div class="flex items-center gap-x-5">
+										<img
+											src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+											alt=""
+											class="w-[70px] h-[70px] rounded-full object-cover"
+										/>
+										<div class="flex flex-col gap-y-3">
+											<span class="text-2xl font-semibold">John Adebayo</span>
+											<p class="flex items-center gap-x-3">
+												<svg
+													width="20"
+													height="19"
+													viewBox="0 0 20 19"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														fill-rule="evenodd"
+														clip-rule="evenodd"
+														d="M8.69555 0.80846C9.1439 -0.269486 10.6709 -0.269487 11.1193 0.80846L13.2013 5.81417L18.6054 6.24742C19.7691 6.34071 20.241 7.793 19.3543 8.55251L15.237 12.0795L16.4949 17.3529C16.7658 18.4885 15.5304 19.3861 14.5341 18.7775L9.90741 15.9516L5.28076 18.7775C4.28444 19.3861 3.04905 18.4885 3.31993 17.3529L4.57785 12.0795L0.460502 8.55251C-0.426138 7.79301 0.045735 6.34071 1.20947 6.24742L6.61356 5.81417L8.69555 0.80846Z"
+														fill="#F24C00"
+													/>
+												</svg>
+												<span class="text-3xl font-semibold text-customBlack"
+													>4.5</span
+												>
+											</p>
+										</div>
+									</div>
+									<a
+										href="tel:0955737233"
+										class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-primary"
+										><svg
+											width="17"
+											height="17"
+											viewBox="0 0 17 17"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												fill-rule="evenodd"
+												clip-rule="evenodd"
+												d="M0.380859 2.90486C0.380859 1.64249 1.40421 0.619141 2.66657 0.619141H3.71162C4.36715 0.619141 4.93855 1.06528 5.09754 1.70123L5.94005 5.07128C6.07946 5.62889 5.8711 6.21575 5.41128 6.56061L4.42566 7.29983C4.32331 7.37659 4.30106 7.48899 4.32981 7.56747C5.19496 9.92923 7.07078 11.805 9.43253 12.6702C9.51101 12.6989 9.62342 12.6767 9.70018 12.5743L10.4394 11.5887C10.7843 11.1289 11.3711 10.9205 11.9287 11.06L15.2988 11.9025C15.9347 12.0614 16.3809 12.6329 16.3809 13.2884V14.3334C16.3809 15.5958 15.3575 16.6191 14.0951 16.6191H12.3809C5.75344 16.6191 0.380859 11.2466 0.380859 4.61914V2.90486Z"
+												fill="white"
+											/>
+										</svg>
+									</a>
+								</div>
+								<div class="mt-8">
+									<span class="text-[1.7rem] font-semibold text-secondary"
+										>Task Description</span
+									>
+									<p class="mt-4 text-2xl text-customBlack">
+										Plumber with 10+ years experience. Skilled in all kinds of
+										plumbing and fittings tasks. Hire me today and get all your
+										plumbing issues solved.
+									</p>
+
+									<span
+										class="flex w-max text-white mt-8 bg-red-500 px-10 py-4 rounded-full text-2xl"
+										>Declined</span
+									>
+								</div>
+							</div>
+							<div class="w-full pb-8 border-b last:border-0">
+								<div class="flex items-center justify-between">
+									<div class="flex items-center gap-x-5">
+										<img
+											src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+											alt=""
+											class="w-[70px] h-[70px] rounded-full object-cover"
+										/>
+										<div class="flex flex-col gap-y-3">
+											<span class="text-2xl font-semibold">John Adebayo</span>
+											<p class="flex items-center gap-x-3">
+												<svg
+													width="20"
+													height="19"
+													viewBox="0 0 20 19"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														fill-rule="evenodd"
+														clip-rule="evenodd"
+														d="M8.69555 0.80846C9.1439 -0.269486 10.6709 -0.269487 11.1193 0.80846L13.2013 5.81417L18.6054 6.24742C19.7691 6.34071 20.241 7.793 19.3543 8.55251L15.237 12.0795L16.4949 17.3529C16.7658 18.4885 15.5304 19.3861 14.5341 18.7775L9.90741 15.9516L5.28076 18.7775C4.28444 19.3861 3.04905 18.4885 3.31993 17.3529L4.57785 12.0795L0.460502 8.55251C-0.426138 7.79301 0.045735 6.34071 1.20947 6.24742L6.61356 5.81417L8.69555 0.80846Z"
+														fill="#F24C00"
+													/>
+												</svg>
+												<span class="text-3xl font-semibold text-customBlack"
+													>4.5</span
+												>
+											</p>
+										</div>
+									</div>
+									<a
+										href="tel:0955737233"
+										class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-primary"
+										><svg
+											width="17"
+											height="17"
+											viewBox="0 0 17 17"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												fill-rule="evenodd"
+												clip-rule="evenodd"
+												d="M0.380859 2.90486C0.380859 1.64249 1.40421 0.619141 2.66657 0.619141H3.71162C4.36715 0.619141 4.93855 1.06528 5.09754 1.70123L5.94005 5.07128C6.07946 5.62889 5.8711 6.21575 5.41128 6.56061L4.42566 7.29983C4.32331 7.37659 4.30106 7.48899 4.32981 7.56747C5.19496 9.92923 7.07078 11.805 9.43253 12.6702C9.51101 12.6989 9.62342 12.6767 9.70018 12.5743L10.4394 11.5887C10.7843 11.1289 11.3711 10.9205 11.9287 11.06L15.2988 11.9025C15.9347 12.0614 16.3809 12.6329 16.3809 13.2884V14.3334C16.3809 15.5958 15.3575 16.6191 14.0951 16.6191H12.3809C5.75344 16.6191 0.380859 11.2466 0.380859 4.61914V2.90486Z"
+												fill="white"
+											/>
+										</svg>
+									</a>
+								</div>
+								<div class="mt-8">
+									<span class="text-[1.7rem] font-semibold text-secondary"
+										>Task Description</span
+									>
+									<p class="mt-4 text-2xl text-customBlack">
+										Plumber with 10+ years experience. Skilled in all kinds of
+										plumbing and fittings tasks. Hire me today and get all your
+										plumbing issues solved.
+									</p>
+
+									<span
+										class="flex w-max text-white mt-8 bg-red-500 px-10 py-4 rounded-full text-2xl"
+										>Declined</span
+									>
+								</div>
+							</div>
+						</div>
+						<!-- COMPLETED TASKS -->
+						<div x-show="isCompleted" class="w-full flex flex-col gap-y-8">
+							<div class="w-full pb-8 border-b last:border-0">
+								<div class="flex items-center justify-between">
+									<div class="flex items-center gap-x-5">
+										<img
+											src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+											alt=""
+											class="w-[70px] h-[70px] rounded-full object-cover"
+										/>
+										<div class="flex flex-col gap-y-3">
+											<span class="text-2xl font-semibold">John Adebayo</span>
+										</div>
+									</div>
+									<a
+										href="tel:0955737233"
+										class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-primary"
+										><svg
+											width="17"
+											height="17"
+											viewBox="0 0 17 17"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												fill-rule="evenodd"
+												clip-rule="evenodd"
+												d="M0.380859 2.90486C0.380859 1.64249 1.40421 0.619141 2.66657 0.619141H3.71162C4.36715 0.619141 4.93855 1.06528 5.09754 1.70123L5.94005 5.07128C6.07946 5.62889 5.8711 6.21575 5.41128 6.56061L4.42566 7.29983C4.32331 7.37659 4.30106 7.48899 4.32981 7.56747C5.19496 9.92923 7.07078 11.805 9.43253 12.6702C9.51101 12.6989 9.62342 12.6767 9.70018 12.5743L10.4394 11.5887C10.7843 11.1289 11.3711 10.9205 11.9287 11.06L15.2988 11.9025C15.9347 12.0614 16.3809 12.6329 16.3809 13.2884V14.3334C16.3809 15.5958 15.3575 16.6191 14.0951 16.6191H12.3809C5.75344 16.6191 0.380859 11.2466 0.380859 4.61914V2.90486Z"
+												fill="white"
+											/>
+										</svg>
+									</a>
+								</div>
+								<div x-data="menuNdropdown" class="mt-8">
+									<span class="text-[1.7rem] font-semibold text-secondary"
+										>Task Description</span
+									>
+									<p class="mt-4 text-2xl text-customBlack">
+										Plumber with 10+ years experience. Skilled in all kinds of
+										plumbing and fittings tasks. Hire me today and get all your
+										plumbing issues solved.
+									</p>
+									<div class="mt-8 flex items-center gap-x-6">
+										<span
+											class="flex w-max text-white bg-green-500 px-10 py-4 rounded-full text-2xl"
+											>Completed</span
+										>
+										<span
+											@click="showMe"
+											x-show="!isOpen"
+											class="flex w-max hover:bg-primary hover:text-white transition-all duration-200 cursor-pointer border-[1.5px] border-primary text-primary px-10 py-4 rounded-full text-2xl"
+											>Submit Review</span
+										>
+									</div>
+									<div x-show="isOpen" class="mt-10 w-full">
+										<p class="text-2xl font-bold text-customBlack mb-4">
+											Share your feedback
+										</p>
+										<form action="">
+											<textarea
+												class="resize-none outline-none w-full border-[1.5px] h-[160px] border-[#D9D7D7] rounded-lg p-5 transition-all duration-200 hover:border-secondary focus-within:border-secondary text-2xl"
+												placeholder="Write a summary of the key details"
+											></textarea>
+											<div class="mt-4 flex items-center justify-end">
+												<button
+													type="sumbit"
+													class="flex w-max text-white bg-primary px-10 py-4 rounded-full text-2xl"
+												>
+													Submit
+												</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="w-full pb-8 border-b last:border-0">
+								<div class="flex items-center justify-between">
+									<div class="flex items-center gap-x-5">
+										<img
+											src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+											alt=""
+											class="w-[70px] h-[70px] rounded-full object-cover"
+										/>
+										<div class="flex flex-col gap-y-3">
+											<span class="text-2xl font-semibold">John Adebayo</span>
+										</div>
+									</div>
+									<a
+										href="tel:0955737233"
+										class="flex items-center justify-center w-[32px] h-[32px] rounded-full bg-primary"
+										><svg
+											width="17"
+											height="17"
+											viewBox="0 0 17 17"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												fill-rule="evenodd"
+												clip-rule="evenodd"
+												d="M0.380859 2.90486C0.380859 1.64249 1.40421 0.619141 2.66657 0.619141H3.71162C4.36715 0.619141 4.93855 1.06528 5.09754 1.70123L5.94005 5.07128C6.07946 5.62889 5.8711 6.21575 5.41128 6.56061L4.42566 7.29983C4.32331 7.37659 4.30106 7.48899 4.32981 7.56747C5.19496 9.92923 7.07078 11.805 9.43253 12.6702C9.51101 12.6989 9.62342 12.6767 9.70018 12.5743L10.4394 11.5887C10.7843 11.1289 11.3711 10.9205 11.9287 11.06L15.2988 11.9025C15.9347 12.0614 16.3809 12.6329 16.3809 13.2884V14.3334C16.3809 15.5958 15.3575 16.6191 14.0951 16.6191H12.3809C5.75344 16.6191 0.380859 11.2466 0.380859 4.61914V2.90486Z"
+												fill="white"
+											/>
+										</svg>
+									</a>
+								</div>
+								<div class="mt-8">
+									<span class="text-[1.7rem] font-semibold text-secondary"
+										>Task Description</span
+									>
+									<p class="mt-4 text-2xl text-customBlack">
+										Plumber with 10+ years experience. Skilled in all kinds of
+										plumbing and fittings tasks. Hire me today and get all your
+										plumbing issues solved.
+									</p>
+									<div class="mt-8 flex items-center gap-x-6">
+										<span
+											class="flex w-max text-white bg-green-500 px-10 py-4 rounded-full text-2xl"
+											>Completed</span
+										>
+										<span
+											class="flex w-max hover:bg-primary hover:text-white transition-all duration-200 cursor-pointer border-[1.5px] border-primary text-primary px-10 py-4 rounded-full text-2xl"
+											>Submit Review</span
+										>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>

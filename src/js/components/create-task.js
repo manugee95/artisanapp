@@ -37,4 +37,43 @@ init(() => {
 			});
 		},
 	}));
+
+	Alpine.data("tasks", () => ({
+		currentTab: "accepted",
+		setTab(tab) {
+			this.currentTab = tab;
+		},
+
+		get isAccepted() {
+			return this.currentTab === "accepted";
+		},
+
+		get isDeclined() {
+			return this.currentTab === "declined";
+		},
+
+		get isCompleted() {
+			return this.currentTab === "completed";
+		},
+	}));
+	Alpine.data("reviews", () => ({
+		showAll: false,
+		checkReviews() {
+			const reviews = document.querySelectorAll(".revBox");
+			if (reviews.length > 2) {
+				reviews.forEach((review, i) => {
+					if (i > 1) {
+						review.style.display = "none";
+					}
+				});
+			}
+		},
+		showAllReviews() {
+			const reviews = document.querySelectorAll(".revBox");
+			reviews.forEach((review, i) => {
+				review.style.display = "block";
+			});
+			this.showAll = true;
+		},
+	}));
 });
