@@ -116,13 +116,18 @@
 				</div>
 			</aside>
 			<section class="w-full md:w-[65%] lg:w-[75%]">
-				<form class="hidden" id="taskForm" action="/gghgh">
-					<input type="hidden" v-model="taskInfo.title" />
-					<input type="hidden" v-model="taskInfo.taskDate" />
-					<input type="hidden" v-model="taskInfo.address" />
-					<input type="hidden" v-model="taskInfo.summary" />
-					<input type="hidden" v-model="taskInfo.budget" />
-					<input type="file" class="hidden" id="add-task-photo" />
+				<form
+					@submit-form.window="$el.submit()"
+					class="hidden"
+					id="taskForm"
+					action=""
+				>
+					<input type="hidden" name="title" x-model="taskInfo.title" />
+					<input type="hidden" name="date" x-model="taskInfo.taskDate" />
+					<input type="hidden" name="address" x-model="taskInfo.address" />
+					<input type="hidden" name="summary" x-model="taskInfo.summary" />
+					<input type="hidden" name="budget" x-model="taskInfo.budget" />
+					<input type="file" name="image" class="hidden" id="add-task-photo" />
 				</form>
 				<div
 					x-show="currentStep === 1"
@@ -137,6 +142,7 @@
 							<textarea
 								class="resize-none outline-none w-full lg:w-[60%] border-[1.5px] h-[110px] border-[#D9D7D7] rounded-lg p-5 transition-all duration-200 hover:border-secondary focus-within:border-secondary text-2xl"
 								placeholder="What do you need done?"
+								x-model="taskInfo.title"
 							></textarea>
 						</div>
 						<div class="w-full flex flex-col items-center gap-y-7">
@@ -243,6 +249,7 @@
 							<textarea
 								class="resize-none outline-none w-full lg:w-[60%] border-[1.5px] h-[210px] border-[#D9D7D7] rounded-lg p-5 transition-all duration-200 hover:border-secondary focus-within:border-secondary text-2xl"
 								placeholder="Write a summary of the key details"
+								x-model="taskInfo.summary"
 							></textarea>
 							<div class="w-full lg:w-[60%]">
 								<label
@@ -322,7 +329,13 @@
 								Back
 							</button>
 							<button
-								@click="nextStep($select('#taskForm'))"
+								@click="
+									if(currentStep === 4){
+										$dispatch('submit-form')
+									}else{
+										nextStep($select('#taskForm'))
+									}
+								"
 								x-text="currentStep === 4 ? 'Submit' : 'Next'"
 								class="bg-primary rounded-lg text-[1.7rem] font-medium text-white px-24 py-5 transition-all duration-200 hover:bg-secondary hover:text-white"
 							></button>

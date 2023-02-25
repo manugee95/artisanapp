@@ -9,14 +9,8 @@ init(() => {
 			budget: 0,
 		},
 
-		nextStep(el) {
-			if (el !== undefined) {
-				if (this.currentStep === 4) {
-					el.submit();
-				} else {
-					this.currentStep++;
-				}
-			}
+		nextStep() {
+			this.currentStep++;
 		},
 
 		prevStep() {
